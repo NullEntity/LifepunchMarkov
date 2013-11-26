@@ -29,7 +29,7 @@ namespace LifepunchMarkov
                     msg = chain.BuildString();
                 while (msg.StartsWith("*EXACT MATCH!!!*"));
 
-                Console.WriteLine("Output: " + chain.BuildString());
+                Console.WriteLine("Output: " + msg);
                 Console.ReadKey(true);
             }
         }
@@ -69,8 +69,8 @@ namespace LifepunchMarkov
                 doc.LoadHtml(web.DownloadString(url));
 
                 var nodes = doc.DocumentNode.SelectNodes("//a[@href and not(.='Go Back')]");
-                //foreach (var node in nodes.Take(DAYS))
-                foreach (var node in nodes)
+                foreach (var node in nodes.Take(DAYS))
+                //foreach (var node in nodes)
                     ParseLog(url + node.Attributes["href"].Value);
             }
         }
@@ -90,9 +90,7 @@ namespace LifepunchMarkov
                 // 11/21/13 - 00:00:02 - xoNinja (STEAM_0:0:72405340): wow
                 // /[\d/]{8} - [\d:]{8} - .* \(STEAM_[01]:[01]:\d{1,10}\): (.*)/
                 String message = logParser.Match(node.InnerText).Groups[1].Value;
-                message.Replace("\\\'", "\'");
-                message.Replace("&lt;", "<");
-                message.Replace("&gt;", ">");
+                message = message.Replace("\\\'", "\'").Replace("&lt;", "<").Replace("&gt;", ">");
                 chain.AddText(message.ToLower());
             }
 

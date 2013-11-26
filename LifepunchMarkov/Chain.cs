@@ -10,7 +10,7 @@ namespace LifepunchMarkov
 {
     class Chain
     {
-        public static readonly int ORDER = 3;
+        public static readonly int ORDER = 1;
 
        // private List<Node> nodes = new List<Node>();
         private Hashtable nodes = new Hashtable(StructuralComparisons.StructuralEqualityComparer);
@@ -27,9 +27,9 @@ namespace LifepunchMarkov
                 return; // abort if it doesn't have anything
 
             String[] lastWord = null;
+            String[] currentWord = new String[ORDER];
             for(int i = 0; i < tokens.Count - (ORDER - 1); i++)
             {
-                String[] currentWord = new String[ORDER];
                 for (int j = 0; j < ORDER; j++)
                     currentWord[j] = StringOrDefault(tokens.ElementAt(i + j));
 
@@ -73,7 +73,6 @@ namespace LifepunchMarkov
             }
 
             var link = barNode.Links.FirstOrDefault(x => x.Target != null && x.Target.Value != null && x.Target.Value.SequenceEqual(bar));
-            //var link = barNode.Links[barNode];
             if (link == null)
             {
                 link = new Link(fooNode, barNode);
