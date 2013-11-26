@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.20827.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifepunchMarkov", "LifepunchMarkov\LifepunchMarkov.csproj", "{3CFDF626-D5CB-4667-9E03-67F3DE3AD3DC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4195325E-7FC1-468A-A293-4A75BEBCAE63}"
+	ProjectSection(SolutionItems) = preProject
+		Performance1.psess = Performance1.psess
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3CFDF626-D5CB-4667-9E03-67F3DE3AD3DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CFDF626-D5CB-4667-9E03-67F3DE3AD3DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CFDF626-D5CB-4667-9E03-67F3DE3AD3DC}.Debug|x64.ActiveCfg = Debug|x64
+		{3CFDF626-D5CB-4667-9E03-67F3DE3AD3DC}.Debug|x64.Build.0 = Debug|x64
+		{3CFDF626-D5CB-4667-9E03-67F3DE3AD3DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CFDF626-D5CB-4667-9E03-67F3DE3AD3DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CFDF626-D5CB-4667-9E03-67F3DE3AD3DC}.Release|x64.ActiveCfg = Release|x64
+		{3CFDF626-D5CB-4667-9E03-67F3DE3AD3DC}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
+EndGlobal
