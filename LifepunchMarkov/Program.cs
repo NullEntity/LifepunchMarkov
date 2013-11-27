@@ -14,7 +14,7 @@ namespace LifepunchMarkov
 {
     class Program
     {
-        static readonly int DAYS = 31;   // load 5 days of logs
+        static readonly int DAYS = 5;   // load 5 days of logs
 
         static Chain chain = new Chain();
 
