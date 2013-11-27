@@ -10,7 +10,7 @@ namespace LifepunchMarkov
 {
     class Chain
     {
-        public static readonly int ORDER = 1;
+        public static readonly int ORDER = 3;
 
        // private List<Node> nodes = new List<Node>();
         private Hashtable nodes = new Hashtable(StructuralComparisons.StructuralEqualityComparer);
@@ -26,59 +26,43 @@ namespace LifepunchMarkov
             if (StringOrDefault(tokens.ElementAt(0)) == "")
                 return; // abort if it doesn't have anything
 
-            String[] lastWord = null;
+            //String[] lastWord = new String[ORDER];
+            Node lastNode = null;
             String[] currentWord = new String[ORDER];
             for(int i = 0; i < tokens.Count - (ORDER - 1); i++)
             {
                 for (int j = 0; j < ORDER; j++)
                     currentWord[j] = StringOrDefault(tokens.ElementAt(i + j));
 
-                if (lastWord != null)
-                    AddPair(lastWord, currentWord);
-                else
+                var currentNode = (Node) nodes[currentWord];
+                if (currentNode == null)
                 {
-                    Node node = (Node) nodes[currentWord];
-                    if (node == null)
-                    {
-                        node = new Node(currentWord);
-                        starts.Add(node);
-                        nodes.Add(currentWord, node);
-                    }
+                    currentNode = new Node(currentWord);
+                    nodes.Add(currentWord, currentNode);
                 }
 
-                lastWord = currentWord;
+
+                if (lastNode == null)
+                    starts.Add(currentNode);
+                else
+                    AddPair(lastNode, currentNode);
+
+                lastNode = currentNode;
             }
         }
 
-        public void AddPair(String[] foo, String[] bar, int score = 0)
+        private Node lastNode = null;
+        public void AddPair(Node fooNode, Node barNode, int score = 0)
         {
-            // find if nodes[foo] exists and initialize it if it doesn't
-            Node fooNode = (Node) nodes[foo];
-            HashSet<Link> fooLinks;
-            if (fooNode != null)
-                fooLinks = fooNode.Links;
-            else
-            {
-                fooNode = new Node(foo);
-                nodes.Add(fooNode.Value, fooNode);
-                fooLinks = fooNode.Links;
-            }
-
-            // find if nodes[foo] exists and initialize it if it doesn't
-            var barNode = (Node) nodes[bar];
-            if (barNode == null)
-            {
-                barNode = new Node(bar);
-                nodes.Add(barNode.Value, barNode);
-            }
-
-            var link = barNode.Links.FirstOrDefault(x => x.Target != null && x.Target.Value != null && x.Target.Value.SequenceEqual(bar));
+            Link link = (Link) fooNode.Links[barNode.Value];
             if (link == null)
             {
                 link = new Link(fooNode, barNode);
-                fooLinks.Add(link);
+                fooNode.Links.Add(barNode.Value, link);
             }
             link.Hit();
+
+            lastNode = barNode;
         }
 
         private String StringOrDefault(String s)

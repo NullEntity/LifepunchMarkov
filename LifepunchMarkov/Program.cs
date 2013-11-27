@@ -14,13 +14,16 @@ namespace LifepunchMarkov
 {
     class Program
     {
-        static readonly int DAYS = 5;   // load 5 days of logs
+        static readonly int DAYS = 31;   // load 5 days of logs
 
         static Chain chain = new Chain();
 
         static void Main(string[] args)
         {
+            var start = DateTime.Now;
             Load();
+            var elapsed = DateTime.Now - start;
+            Console.WriteLine("Loaded in {0}", elapsed);
 
             for (; ; )
             {
