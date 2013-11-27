@@ -12,13 +12,13 @@ namespace LifepunchMarkov
     {
         public String[] Value { get; private set; }
         //public HashSet<Link> Links { get; private set; }
-        public Hashtable Links { get; private set; }
+        public Dictionary<String[], Link> Links { get; private set; }
 
         public Node(String[] values)
         {
             this.Value = values;
             //this.Links = new HashSet<Link>();
-            this.Links = new Hashtable();
+            this.Links = new Dictionary<String[], Link>();
         }
 
         public bool Equals(Node n)
@@ -39,7 +39,7 @@ namespace LifepunchMarkov
             if (Links.Count == 0)
                 return String.Join(" ", Value);
 
-            var randomLink = ItemExtension.GetRandomItem<Link>(Links.Values.OfType<Link>().ToList(), x => x.Score);
+            var randomLink = ItemExtension.GetRandomItem(Links.Values, x => x.Score);
             if (randomLink == null || randomLink.Target == null)
                 return ""; // end the sentence
 

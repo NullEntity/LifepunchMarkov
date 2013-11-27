@@ -13,7 +13,7 @@ namespace LifepunchMarkov
         public static readonly int ORDER = 3;
 
        // private List<Node> nodes = new List<Node>();
-        private Hashtable nodes = new Hashtable(StructuralComparisons.StructuralEqualityComparer);
+        private Dictionary<String[], Node> nodes = new Dictionary<String[], Node>();
         private List<Node> starts = new List<Node>();
         private List<String> messages = new List<String>();
         
